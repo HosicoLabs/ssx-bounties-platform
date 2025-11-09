@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function BountyCardSkeleton() {
   return (
-    <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+    <Card className="border-0 shadow-lg bg-zinc-800/90 backdrop-blur-sm py-4">
       <CardHeader>
         <div className="flex items-start justify-between mb-2">
           <Skeleton className="h-6 w-28 rounded-full" />

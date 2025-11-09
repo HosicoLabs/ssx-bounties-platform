@@ -61,54 +61,54 @@ export function BountyCard({ bounty, isAdmin = false }: Props) {
     return (
         <Card
             key={bounty?.id}
-            className="border-0 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 justify-between"
+            className="border-0 shadow-lg bg-zinc-900 py-8 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 justify-between"
         >
             <CardHeader>
                 <div className="flex items-start justify-start gap-2 mb-2">
-                    <Badge variant="outline" className="border-[#1c398e] text-[#1c398e]">
+                    <Badge variant="outline" className="border-zinc-600 text-zinc-300 bg-zinc-900/50">
                         {bounty?.category?.name}
                     </Badge>
-                    <Badge variant="outline" className={cn(isEnded(bounty?.end_date) ? "border-[#1c398e] text-[#1c398e] bg-transparent" : "bg-[#ff6900] text-white border-[#ff6900]")}>
+                    <Badge variant="outline" className={cn(isEnded(bounty?.end_date) ? "border-zinc-600 text-zinc-300 bg-zinc-900/50" : "bg-[#F2C700] text-black border-[#F2C700]")}>
                         {isEnded(bounty?.end_date) ? "Finalized" : "Active"}
                     </Badge>
                 </div>
-                <CardTitle className="text-[#1c398e] text-2xl">{bounty?.title}</CardTitle>
-                <CardDescription>{bounty?.description}</CardDescription>
+                <CardTitle className="text-white text-2xl">{bounty?.title}</CardTitle>
+                <CardDescription className="text-zinc-400">{bounty?.description}</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="space-y-4 self-end">
                     <div className="flex flex-col justify-center items-start gap-2">
                         {bounty?.prizes.map((prize, index) => (
                             <div key={index} className="flex items-center space-x-2">
-                                <span className="font-medium">{prize.place}:</span>
-                                <span className="font-bold text-[#ff6900]">
-                                    {Number.parseFloat(prize.prize.toString()).toLocaleString()} HOSICO
+                                <span className="font-medium text-zinc-300">{prize.place}:</span>
+                                <span className="font-bold text-[#F2C700]">
+                                    {Number.parseFloat(prize.prize.toString()).toLocaleString()} SSX
                                 </span>
                             </div>
                         ))}
                     </div>
 
                     <div className="flex items-center space-x-2 mb-8">
-                        <Coins className="w-4 h-4 text-[#fdc700]" />
-                        <span className="font-medium">Total Prize:</span>
-                        <span className="font-bold text-[#ff6900]">
-                            {calculateTotalPrize(bounty?.prizes)} HOSICO
+                        <Coins className="w-4 h-4 text-[#F2C700]" />
+                        <span className="font-medium text-zinc-300">Total Prize:</span>
+                        <span className="font-bold text-[#F2C700]">
+                            {calculateTotalPrize(bounty?.prizes)} SSX
                         </span>
                     </div>
 
                     <div className="flex items-center space-x-2 justify-start">
-                        <Clock className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">
+                        <Clock className="w-4 h-4 text-zinc-400" />
+                        <span className="text-sm text-zinc-400">
                             End date: {formatEndDate(bounty?.end_date)}
                         </span>
                     </div>
 
-                    <div className="flex items-center justify-between mt-10">
+                    <div className="flex flex-col gap-4 mt-10">
                         <div className="flex items-center space-x-2">
-                            <Users className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-sm text-muted-foreground">{bounty?.submissions_total} Submissions</span>
+                            <Users className="w-4 h-4 text-zinc-400" />
+                            <span className="text-sm text-zinc-400">{bounty?.submissions_total} Submissions</span>
                         </div>
-                        <div className="flex items-center space-x-2 justify-end">
+                        <div className="flex flex-col sm:flex-row gap-2 w-full">
                             {isAdmin ? (
                                 <AlertDialog
                                     open={isOpen}
@@ -119,15 +119,16 @@ export function BountyCard({ bounty, isAdmin = false }: Props) {
                                 >
                                     <AlertDialogTrigger asChild>
                                         <Button
-                                            className="bg-red-600 hover:bg-red-700"
+                                            size="sm"
+                                            className="bg-red-600 hover:bg-red-700 text-white w-full sm:flex-1"
                                             disabled={isDeleting}
                                             onClick={() => setIsOpen(true)}
                                         >
-                                            {isDeleting ? "Deleting…" : "Delete Bounty"}
+                                            {isDeleting ? "Deleting…" : "Delete"}
                                         </Button>
                                     </AlertDialogTrigger>
 
-                                    <AlertDialogContent>
+                                    <AlertDialogContent className="bg-zinc-900 border-none">
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>Delete Bounty</AlertDialogTitle>
                                             <AlertDialogDescription>
@@ -136,7 +137,7 @@ export function BountyCard({ bounty, isAdmin = false }: Props) {
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
-                                            <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
+                                            <AlertDialogCancel className="bg-zinc-800 border-none" disabled={isDeleting}>Cancel</AlertDialogCancel>
                                             <AlertDialogAction
                                                 className="bg-red-600 hover:bg-red-700"
                                                 disabled={isDeleting}
@@ -152,9 +153,9 @@ export function BountyCard({ bounty, isAdmin = false }: Props) {
                                 </AlertDialog>
                             ) : null}
 
-                            <Link href={`/bounties/${bounty?.id}`}>
-                                <Button className="bg-[#ff6900] hover:bg-[#ff6900]/90 text-white">
-                                    {isEnded(bounty?.end_date) ? "View results" : (isAdmin ? "View Bounty" : "Join Bounty")}
+                            <Link href={`/bounties/${bounty?.id}`} className="w-full sm:flex-1">
+                                <Button size="sm" className="bg-[#F2C700] hover:bg-[#F2C700]/90 text-black w-full">
+                                    {isEnded(bounty?.end_date) ? "View Results" : (isAdmin ? "View Bounty" : "Join Bounty")}
                                 </Button>
                             </Link>
                         </div>

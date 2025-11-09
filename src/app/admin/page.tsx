@@ -117,27 +117,27 @@ export default function AdminPanel() {
 
   if (!isAdmin) {
     return (
-      <p>404</p>
+      <p></p>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1c398e]/5 to-[#ff6900]/5">
+    <div className="min-h-screen bg-black">
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="bounties" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm">
-            <TabsTrigger value="bounties" className="data-[state=active]:bg-[#ff6900] data-[state=active]:text-white">
+          <TabsList className="grid w-full grid-cols-2 bg-zinc-800 backdrop-blur-sm">
+            <TabsTrigger value="bounties" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">
               Bounties
             </TabsTrigger>
-            <TabsTrigger value="create" className="data-[state=active]:bg-[#ff6900] data-[state=active]:text-white">
+            <TabsTrigger value="create" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">
               Create Bounty
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="bounties" className="space-y-6">
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <TabsContent value="bounties" className="space-y-6 ">
+            <Card className="border-0 shadow-lg bg-zinc-800 backdrop-blur-sm py-8">
               <CardHeader>
-                <CardTitle className="text-[#1c398e]">Active Bounties Management</CardTitle>
+                <CardTitle className="text-[#F2C700]">Active Bounties Management</CardTitle>
                 <CardDescription>Monitor and manage currently active bounties</CardDescription>
               </CardHeader>
               <CardContent>
@@ -148,7 +148,7 @@ export default function AdminPanel() {
                       <BountyCardSkeleton />
                     ) : (
                       activeBounties.length === 0 ? (
-                        <p className="text-center text-muted-foreground bg-gray-100 py-4 px-2 rounded-md">
+                        <p className="text-center text-white bg-zinc-900 py-4 px-2 rounded-md">
                           No active bounties at the moment. Please check back later!
                         </p>
                       ) : (
@@ -168,9 +168,9 @@ export default function AdminPanel() {
           </TabsContent>
 
           <TabsContent value="create" className="space-y-6">
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-zinc-800 backdrop-blur-sm py-6">
               <CardHeader>
-                <CardTitle className="text-[#1c398e]">Create New Bounty</CardTitle>
+                <CardTitle className="text-[#F2C700]">Create New Bounty</CardTitle>
                 <CardDescription>Set up a new bounty challenge for the community</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -178,19 +178,21 @@ export default function AdminPanel() {
                   <div className="grid grid-cols-1">
                     <div className="space-y-4 mb-4">
                       <div>
-                        <Label htmlFor="title">Bounty Title</Label>
+                        <Label className="text-white mb-3" htmlFor="title">Bounty Title</Label>
                         <Input
                           id="title"
                           placeholder="Enter bounty title"
+                          className="text-zinc-400 border-zinc-600"
                           required
                           disabled={isSubmitting}
                           onChange={(e) => setBountyTitle(e.target.value)}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="description">Description</Label>
+                        <Label className="text-white mb-3" htmlFor="description">Description</Label>
                         <Textarea
                           id="description"
+                          className="text-zinc-400 border-zinc-600"
                           placeholder="Provide detailed description of the bounty requirements..."
                           rows={4}
                           required
@@ -199,9 +201,10 @@ export default function AdminPanel() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="requirements">Requirements & Guidelines</Label>
+                        <Label className="text-white mb-3" htmlFor="requirements">Requirements & Guidelines</Label>
                         <Textarea
                           id="requirements"
+                          className="text-zinc-400 border-zinc-600"
                           placeholder="List specific requirements, submission guidelines, and evaluation criteria..."
                           rows={4}
                           required
@@ -212,14 +215,14 @@ export default function AdminPanel() {
                     </div>
                     <div className="space-y-4 md:grid-cols-2 gap-6 md:grid">
                       <div>
-                        <Label htmlFor="category">Category</Label>
+                        <Label className="text-white mb-3" htmlFor="category">Category</Label>
                         <Select disabled={isSubmitting} required onValueChange={(value) => setBountyCategory(Number(value))}>
-                          <SelectTrigger>
+                          <SelectTrigger className="text-zinc-400 border-zinc-600">
                             <SelectValue placeholder="Select category" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="bg-zinc-800 border-zinc-700">
                             {categories.map(({ id, name }) => (
-                              <SelectItem key={id} value={id.toString()}>
+                              <SelectItem key={id} value={id.toString()} className="text-white hover:bg-zinc-700 hover:text-[#F2C700] focus:bg-zinc-700 focus:text-[#F2C700]">
                                 {name}
                               </SelectItem>
                             ))}
@@ -227,24 +230,24 @@ export default function AdminPanel() {
                         </Select>
                       </div>
                       <div>
-                        <Label htmlFor="duration">Duration (days)</Label>
-                        <Input required disabled={isSubmitting} id="duration" placeholder="Enter duration in days" type="date" onChange={(e) => setBountyEndDate(e.target.value)} />
+                        <Label className="text-white mb-3" htmlFor="duration">Duration (days)</Label>
+                        <Input required disabled={isSubmitting} id="duration" placeholder="Enter duration in days" type="date" className="text-zinc-400 border-zinc-600 [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:brightness-0 [&::-webkit-calendar-picker-indicator]:contrast-100" onChange={(e) => setBountyEndDate(e.target.value)} />
                       </div>
                     </div>
                   </div>
 
-                  <Card className="border border-[#1c398e]/20">
+                  <Card className="border-none bg-zinc-900 py-4">
                     <CardHeader>
                       <div className="flex items-center justify-between">
                         <div>
-                          <CardTitle className="text-lg text-[#1c398e]">Prize Distribution</CardTitle>
+                          <CardTitle className="text-lg text-[#F2C700]">Prize Distribution</CardTitle>
                           <CardDescription>Set rewards for each winner position</CardDescription>
                         </div>
                         <Button
                           type="button"
                           onClick={addWinnerPosition}
                           size="sm"
-                          className="bg-[#ff6900] hover:bg-[#ff6900]/90 text-white"
+                          className="bg-[#F2C700] hover:bg-[#F2C700]/90 text-black"
                           disabled={isSubmitting}
                         >
                           <Plus className="w-4 h-4 mr-1" />
@@ -255,14 +258,14 @@ export default function AdminPanel() {
                     <CardContent className="space-y-4">
                       <div className="space-y-3">
                         {bountyPrizes.map((position, index) => (
-                          <div key={index} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                          <div key={index} className="flex items-center gap-4 p-3 bg-zinc-800 rounded-lg">
                             <div className="flex items-center space-x-2 min-w-0 flex-1">
                               <div className="w-8 h-8 bg-[#fdc700] rounded-full flex items-center justify-center flex-shrink-0">
-                                <span className="text-sm font-bold text-[#1c398e]">{position.place}</span>
+                                <span className="text-sm font-bold text-black">{position.place}</span>
                               </div>
                               <div className="flex-1">
-                                <Label htmlFor={`prize-${index}`} className="text-sm">
-                                  {position.place} Place Prize (HOSICO)
+                                <Label className="text-white mb-3 text-sm" htmlFor={`prize-${index}`}>
+                                  {position.place} Place Prize (SSX)
                                 </Label>
                                 <Input
                                   id={`prize-${index}`}
@@ -270,7 +273,7 @@ export default function AdminPanel() {
                                   type="number"
                                   value={position.prize}
                                   onChange={(e) => updateWinnerPrize(index, e.target.value)}
-                                  className="mt-1"
+                                  className="mt-1 text-zinc-400 border-zinc-600"
                                   required
                                   disabled={isSubmitting}
                                 />
@@ -282,7 +285,7 @@ export default function AdminPanel() {
                                 onClick={() => removeWinnerPosition(index)}
                                 size="sm"
                                 variant="outline"
-                                className="flex-shrink-0"
+                                className="flex-shrink-0 bg-[#ff4d4d] hover:bg-[#ff4d4d]/90 text-black border-none "
                                 disabled={isSubmitting}
                               >
                                 <X className="w-4 h-4" />
@@ -293,9 +296,9 @@ export default function AdminPanel() {
                       </div>
                       <div className="pt-3 border-t">
                         <div className="flex items-center justify-between">
-                          <Label className="text-base font-semibold">Total Prize Pool</Label>
-                          <span className="text-lg font-bold text-[#ff6900]">
-                            {calculateTotalPrize().toLocaleString()} HOSICO
+                          <Label className="text-white mb-3 text-base font-semibold">Total Prize Pool</Label>
+                          <span className="text-lg font-bold text-[#F2C700]">
+                            {calculateTotalPrize().toLocaleString()} SSX
                           </span>
                         </div>
                       </div>
@@ -304,7 +307,7 @@ export default function AdminPanel() {
                   <div className="flex space-x-4">
                     <Button
                       type="submit"
-                      className={cn("hover:bg-[#ff6900]/90 text-white", isSubmitting ? "opacity-50 cursor-not-allowed pointer-events-none bg-gray-400" : "bg-[#ff6900] ")}
+                      className={cn("hover:bg-[#F2C700]/90 text-black", isSubmitting ? "opacity-50 cursor-not-allowed pointer-events-none bg-gray-400" : "bg-[#F2C700] ")}
                       disabled={isSubmitting}
                     >Create Bounty</Button>
                   </div>

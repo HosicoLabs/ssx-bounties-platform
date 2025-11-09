@@ -9,7 +9,7 @@ export function CategoryButtonsSkeleton({ count = 6 }: { count?: number }) {
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
-          className={`h-8 rounded-full ${widths[i % widths.length]} bg-white`}
+          className={`h-8 rounded-full ${widths[i % widths.length]} bg-zinc-600`}
         />
       ))}
     </div>

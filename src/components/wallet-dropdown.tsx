@@ -44,7 +44,7 @@ function WalletDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="cursor-pointer bg-[#ff6900] text-white">
+        <Button variant="outline" className="cursor-pointer bg-[#F2C700] text-black hover:text-[#F2C700] border-[#F2C700] hover:bg-transparent">
           {wallet?.icon ? <WalletAvatar wallet={wallet} /> : null}
           {connected ? (account ? ellipsify(account.address) : wallet?.name) : 'Select Wallet'}
         </Button>

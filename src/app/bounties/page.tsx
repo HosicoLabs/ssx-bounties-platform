@@ -23,21 +23,21 @@ export default function BountiesPage() {
       : inactiveBounties.filter((bounty) => bounty?.category?.name === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1c398e]/5 to-[#ff6900]/5">
+    <div className="min-h-screen bg-black">
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="active" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm">
-            <TabsTrigger value="active" className="data-[state=active]:bg-[#ff6900] data-[state=active]:text-white">
+          <TabsList className="grid w-full grid-cols-2 bg-zinc-800 backdrop-blur-sm">
+            <TabsTrigger value="active" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">
               Active Bounties ({activeBounties.length})
             </TabsTrigger>
-            <TabsTrigger value="finalized" className="data-[state=active]:bg-[#ff6900] data-[state=active]:text-white">
+            <TabsTrigger value="finalized" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">
               Finalized Bounties ({inactiveBounties.length})
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="active" className="space-y-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-[#1c398e]">Currently Active</h3>
+              <h3 className="text-xl font-bold text-[#fff]">Currently Active</h3>
               <div className="flex flex-wrap gap-2 justify-end">
                 {
                   categoriesLoading ? (
@@ -50,8 +50,8 @@ export default function BountiesPage() {
                       onClick={() => setSelectedCategory(cat)}
                       className={
                         selectedCategory === cat
-                          ? "bg-[#fdc700] text-[#1c398e] border-[#fdc700] font-bold"
-                          : "hover:bg-[#fdc700]/20 text-[#1c398e]"
+                        ? "bg-[#fdc700] text-black border-[#fdc700] font-bold hover:bg-transparent hover:text-[#fdc700]"
+                        : "bg-transparent text-[#fdc700] border-[#fdc700] hover:bg-[#fdc700]"
                       }
                     >
                       {cat}
@@ -77,7 +77,7 @@ export default function BountiesPage() {
                     }
                   </div>
                 ) : (
-                  <p className="text-center text-muted-foreground bg-gray-100 py-4 px-2 rounded-md">
+                  <p className="text-center text-white bg-zinc-800 py-4 px-2 rounded-md">
                     No active bounties at the moment. Please check back later!
                   </p>
                 )
@@ -87,7 +87,7 @@ export default function BountiesPage() {
 
           <TabsContent value="finalized" className="space-y-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-[#1c398e]">Completed Bounties</h3>
+              <h3 className="text-xl font-bold text-[#fff]">Completed Bounties</h3>
               <div className="flex flex-wrap gap-2 justify-end">
                 {
                   categoriesLoading ? (
@@ -100,8 +100,8 @@ export default function BountiesPage() {
                       onClick={() => setSelectedCategory(cat)}
                       className={
                         selectedCategory === cat
-                          ? "bg-[#fdc700] text-[#1c398e] border-[#fdc700] font-bold"
-                          : "hover:bg-[#fdc700]/20 text-[#1c398e]"
+                        ? "bg-[#fdc700] text-black border-[#fdc700] font-bold hover:bg-transparent hover:text-[#fdc700]"
+                        : "bg-transparent text-[#fdc700] border-[#fdc700] hover:bg-[#fdc700]"
                       }
                     >
                       {cat}
@@ -126,7 +126,7 @@ export default function BountiesPage() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-center text-muted-foreground bg-gray-100 py-4 px-2 rounded-md">
+                  <p className="text-center text-white bg-zinc-800 py-4 px-2 rounded-md">
                     No active bounties at the moment. Please check back later!
                   </p>
                 )
