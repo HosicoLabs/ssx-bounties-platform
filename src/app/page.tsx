@@ -8,6 +8,7 @@ import { useBounties } from "@/components/bounties-provider"
 import { BountyCardsSkeletonGrid } from "@/components/skeletons/bounty-card-skeleton"
 import { BountyCard } from "@/components/bounty-card"
 import { useAdmin } from "@/components/admin/use-admin"
+import { cn } from "@/lib/utils"
 
 export default function Home() {
   const { categoryNames: categories, categoriesLoading, activeBounties, bountiesLoading } = useBounties()
@@ -23,10 +24,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black">
       <main className="container mx-auto px-4 py-8">
-        <Card className="mb-8 border-0 shadow-xl overflow-auto" style={{ backgroundColor: "#000" }}>
+        <Card className={cn("mb-8 border-0 shadow-xl overflow-auto bg-black")}>
           <CardContent className="p-0 relative">
             <div 
-              className="w-full h-64 bg-cover bg-center opacity-80" 
+              className={cn("w-full h-64 bg-cover bg-center opacity-80")} 
               style={{ backgroundImage: "url('/images/ssx-banner.jpg')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#000]/80 to-[#000]/60"></div>

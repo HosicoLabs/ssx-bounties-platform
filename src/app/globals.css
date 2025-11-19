@@ -112,7 +112,121 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/**
+ * Custom CSS properties for the centralized design system
+ * Used by colors.ts and theme-variables.ts
+ */
 @layer base {
+  :root {
+    /* Brand Colors */
+    --color-primary-brand: #F2C700;
+    --color-primary-brand-dark: #E0B800;
+    --color-primary-brand-light: #FFD700;
+
+    /* Accent Colors */
+    --color-accent-red: #EF4444;
+    --color-accent-red-dark: #DC2626;
+    --color-accent-red-light: #F87171;
+    --color-accent-green: #22C55E;
+    --color-accent-green-dark: #16A34A;
+    --color-accent-blue: #3B82F6;
+    --color-accent-blue-dark: #1D4ED8;
+
+    /* Neutral Colors */
+    --color-neutral-50: #FAFAFA;
+    --color-neutral-100: #F4F4F5;
+    --color-neutral-200: #E4E4E7;
+    --color-neutral-300: #D4D4D8;
+    --color-neutral-400: #A1A1A6;
+    --color-neutral-500: #71717A;
+    --color-neutral-600: #52525B;
+    --color-neutral-700: #3F3F46;
+    --color-neutral-800: #27272A;
+    --color-neutral-900: #18181B;
+    --color-neutral-950: #09090B;
+
+    /* Background Colors */
+    --color-bg-primary: #18181B;
+    --color-bg-secondary: #27272A;
+    --color-bg-tertiary: #3F3F46;
+    --color-bg-card: #18181B;
+    --color-bg-card-hover: #27272A;
+    --color-bg-input: #27272A;
+    --color-bg-border: #52525B;
+    --color-bg-border-light: #3F3F46;
+
+    /* Text Colors */
+    --color-text-primary: #FAFAFA;
+    --color-text-secondary: #D4D4D8;
+    --color-text-muted: #A1A1A6;
+    --color-text-subtle: #71717A;
+    --color-text-inverse: #18181B;
+
+    /* Status Colors */
+    --color-status-success-bg: #22C55E;
+    --color-status-success-text: #FAFAFA;
+    --color-status-success-border: #16A34A;
+
+    --color-status-error-bg: #EF4444;
+    --color-status-error-text: #FAFAFA;
+    --color-status-error-border: #DC2626;
+
+    --color-status-error-dark-bg: #7F1D1D;
+    --color-status-error-dark-text: #FECACA;
+    --color-status-error-dark-border: #EF4444;
+
+    --color-status-warning-bg: #FBBF24;
+    --color-status-warning-text: #18181B;
+    --color-status-warning-border: #F59E0B;
+
+    --color-status-info-bg: #3B82F6;
+    --color-status-info-text: #FAFAFA;
+    --color-status-info-border: #1D4ED8;
+
+    /* Skeleton Colors */
+    --color-skeleton-light: #52525B;
+    --color-skeleton-dark: #3F3F46;
+
+    /* Semantic Colors */
+    --color-semantic-active: #F2C700;
+    --color-semantic-hover: #27272A;
+    --color-semantic-focus: #52525B;
+    --color-semantic-disabled: #3F3F46;
+    --color-semantic-loading: #F2C700;
+
+    /* Theme Variables */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 2.5rem;
+    --spacing-3xl: 3rem;
+    --spacing-4xl: 4rem;
+
+    --radius-none: 0;
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 0.875rem;
+    --radius-xl: 1.25rem;
+    --radius-full: 9999px;
+
+    --transition-fast: 150ms ease-in-out;
+    --transition-base: 200ms ease-in-out;
+    --transition-slow: 300ms ease-in-out;
+    --transition-slower: 500ms ease-in-out;
+
+    --z-index-hide: -1;
+    --z-index-base: 0;
+    --z-index-docked: 10;
+    --z-index-sticky: 20;
+    --z-index-fixed: 30;
+    --z-index-modal-backdrop: 40;
+    --z-index-modal: 50;
+    --z-index-popover: 60;
+    --z-index-toast: 100;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }

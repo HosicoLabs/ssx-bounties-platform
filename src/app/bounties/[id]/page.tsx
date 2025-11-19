@@ -231,13 +231,13 @@ export default function BountyDetailPage() {
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center space-x-4">
                         <Link href="/">
-                            <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white">
+                            <Button variant="ghost" size="sm" className="text-zinc-400">
                                 <ArrowLeft className="w-4 h-4 mr-2" />
                                 Back to Dashboard
                             </Button>
                         </Link>
                         <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-gradient-to-r from-[#F2C700] to-[#fdc700] rounded-full flex items-center justify-center">
+                            <div className={cn("w-8 h-8 rounded-full flex items-center justify-center bg-[var(--color-primary-brand)]")}>
                                 <Trophy className="w-4 h-4 text-black" />
                             </div>
                             <h1 className="text-xl font-bold text-white">Bounty Details</h1>
@@ -252,10 +252,15 @@ export default function BountyDetailPage() {
                                 <div className="flex items-start justify-between">
                                     <div className="flex-1">
                                         <div className="flex items-center space-x-3 mb-3">
-                                            <Badge variant="outline" className="border-zinc-600 text-zinc-300 bg-zinc-900/50">
+                                            <Badge variant="outline" className={cn("border-zinc-600 bg-[var(--color-bg-card)] text-[var(--color-text-secondary)]")}>
                                                 {bounty.category?.name ?? "—"}
                                             </Badge>
-                                            <Badge className={cn(isEnded(bounty?.end_date) ? "border-zinc-600 text-zinc-300 bg-zinc-900/50" : "bg-[#F2C700] text-black border-[#F2C700]")}>{isEnded(bounty.end_date) ? "Finalized" : "Active"}</Badge>
+                                            <Badge className={cn(
+                                              "border-0 font-medium",
+                                              isEnded(bounty?.end_date) 
+                                                ? "bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]" 
+                                                : "bg-[var(--color-primary-brand)] text-black"
+                                            )}>{isEnded(bounty.end_date) ? "Finalized" : "Active"}</Badge>
                                         </div>
                                         <CardTitle className="text-2xl text-white text-balance mb-2">
                                             {bounty.title}
@@ -269,10 +274,10 @@ export default function BountyDetailPage() {
                             <CardContent>
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                     <div className="flex items-center space-x-2">
-                                        <Coins className="w-5 h-5 text-[#F2C700]" />
+                                        <Coins className={cn("w-5 h-5 text-[var(--color-primary-brand)]")} />
                                         <div>
-                                            <p className="text-sm text-zinc-400">Total Reward</p>
-                                            <p className="font-bold text-[#F2C700]">
+                                            <p className={cn("text-sm text-[var(--color-text-muted)]")}>Total Reward</p>
+                                            <p className={cn("font-bold text-[var(--color-primary-brand)]")}>
                                                 {calculateTotalPrize(bounty.prizes)} SSX
                                             </p>
                                         </div>
@@ -285,10 +290,20 @@ export default function BountyDetailPage() {
                                         </div>
                                     </div>
                                     <div className="flex items-center space-x-2">
-                                        <Clock className={cn(isEnded(bounty.end_date) ? "w-5 h-5 text-red-500" : "text-[#F2C700]")} />
+                                        <Clock className={cn(
+                                          "w-5 h-5",
+                                          isEnded(bounty.end_date) 
+                                            ? "text-[var(--color-status-error-bg)]" 
+                                            : "text-[var(--color-primary-brand)]"
+                                        )} />
                                         <div>
-                                            <p className="text-sm text-zinc-400">Ends</p>
-                                            <p className={cn("font-bold", isEnded(bounty.end_date) ? "text-red-500" : "text-[#F2C700]")}>
+                                            <p className={cn("text-sm text-[var(--color-text-muted)]")}>Ends</p>
+                                            <p className={cn(
+                                              "font-bold",
+                                              isEnded(bounty.end_date) 
+                                                ? "text-[var(--color-status-error-bg)]" 
+                                                : "text-[var(--color-primary-brand)]"
+                                            )}>
                                                 {new Date(bounty.end_date).toLocaleDateString()}
                                             </p>
                                         </div>
@@ -299,11 +314,11 @@ export default function BountyDetailPage() {
 
                         <Tabs defaultValue="details" className="space-y-6">
                             <TabsList className={`grid w-full ${isAdmin ? "grid-cols-3" : "grid-cols-2"} bg-zinc-800 backdrop-blur-sm`}>
-                                <TabsTrigger value="details" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">Details</TabsTrigger>
-                                <TabsTrigger value="submit" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">Submit Entry</TabsTrigger>
-                                {isAdmin ? (
-                                    <TabsTrigger value="winners" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">Select Winners</TabsTrigger>
-                                ) : ""}
+                                <TabsTrigger value="details" className="text-white hover:bg-[var(--color-primary-brand)] hover:text-black data-[state=active]:bg-[var(--color-primary-brand)] data-[state=active]:text-black">Details</TabsTrigger>
+                                <TabsTrigger value="submit" className="text-white hover:bg-[var(--color-primary-brand)] hover:text-black data-[state=active]:bg-[var(--color-primary-brand)] data-[state=active]:text-black">Submit Entry</TabsTrigger>
+                                {isAdmin && (
+                                    <TabsTrigger value="winners" className="text-white hover:bg-[var(--color-primary-brand)] hover:text-black data-[state=active]:bg-[var(--color-primary-brand)] data-[state=active]:text-black">Select Winners</TabsTrigger>
+                                )}
                             </TabsList>
 
                             <TabsContent value="details">
@@ -334,11 +349,11 @@ export default function BountyDetailPage() {
                                                 {(bounty.prizes ?? []).map((prize, index) => (
                                                     <div key={index} className="flex items-center justify-between p-3 bg-zinc-900 rounded-lg">
                                                         <div className="flex items-center space-x-3">
-                                                            <div className="w-8 h-8 bg-[#F2C700] rounded-full flex items-center justify-center">
-                                                                <span className="text-sm font-bold text-black">{prize.place}</span>
+                                                            <div className={cn("w-8 h-8 rounded-full flex items-center justify-center bg-[var(--color-primary-brand)]")}>
+                                                                <span className="text-sm font-bold text-black">#{index + 1}</span>
                                                             </div>
                                                         </div>
-                                                        <span className="font-bold text-[#F2C700]">{Number(prize.prize).toLocaleString()} SSX</span>
+                                                        <span className={cn("font-bold text-[var(--color-primary-brand)]")}>{Number(prize.prize).toLocaleString()} SSX</span>
                                                     </div>
                                                 ))}
                                             </div>
@@ -365,7 +380,7 @@ export default function BountyDetailPage() {
                                                                                         <Link href={`https://x.com/${submission.twitter_handle}`} target="_blank" rel="noopener noreferrer" >
                                                                                             <h4 className="font-semibold text-white underline">{submission.twitter_handle}</h4>
                                                                                         </Link>
-                                                                                        <Badge className="bg-[#F2C700] text-black">
+                                                                                        <Badge className="bg-primary text-black">
 
                                                                                             {position} Place
                                                                                         </Badge>
@@ -376,7 +391,7 @@ export default function BountyDetailPage() {
                                                                                                 href={submission.tweet_link}
                                                                                                 target="_blank"
                                                                                                 rel="noopener noreferrer"
-                                                                                                className="underline text-[#F2C700] hover:text-[#F2C700]/80"
+                                                                                                className={cn("underline hover:opacity-80 text-[var(--color-primary-brand)]")}
                                                                                             >
                                                                                                 Tweet link
                                                                                             </Link>
@@ -451,7 +466,7 @@ export default function BountyDetailPage() {
                                                                     disabled={submissionLoading || isEnded(bounty.end_date)}
                                                                     value={tweetLink}
                                                                     onChange={(e) => setTweetLink(e.target.value)}
-                                                                    className="text-zinc-400 border-zinc-600 focus:ring-2 focus:ring-[#F2C700] focus:border-[#F2C700]"
+                                                                    className="text-zinc-400 border-zinc-600 focus:ring-2 focus:ring-primary focus:border-primary"
                                                                     required
                                                                 />
                                                             </div>
@@ -470,7 +485,7 @@ export default function BountyDetailPage() {
                                                                     value={twitterHandle}
                                                                     disabled={submissionLoading || isEnded(bounty.end_date)}
                                                                     onChange={(e) => setTwitterHandle(e.target.value)}
-                                                                    className="text-zinc-400 border-zinc-600 focus:ring-2 focus:ring-[#F2C700] focus:border-[#F2C700]"
+                                                                    className="text-zinc-400 border-zinc-600 focus:ring-2 focus:ring-primary focus:border-primary"
                                                                     required
                                                                 />
                                                             </div>
@@ -488,7 +503,7 @@ export default function BountyDetailPage() {
                                                                     disabled={submissionLoading || isEnded(bounty.end_date)}
                                                                     value={additionalInfo}
                                                                     onChange={(e) => setAdditionalInfo(e.target.value)}
-                                                                    className="text-zinc-400 border-zinc-600 focus:ring-2 focus:ring-[#F2C700] focus:border-[#F2C700] pr-10"
+                                                                    className="text-zinc-400 border-zinc-600 focus:ring-2 focus:ring-primary focus:border-primary pr-10"
                                                                 />
                                                                 <div className="absolute right-3 top-3">
                                                                     <div className="w-6 h-6 bg-zinc-700 rounded-full flex items-center justify-center">
@@ -500,7 +515,12 @@ export default function BountyDetailPage() {
 
                                                         <Button
                                                             type="submit"
-                                                            className={cn("w-full bg-[#F2C700] hover:bg-[#F2C700]/90 text-black font-medium", isEnded(bounty.end_date) || submissionLoading ? "opacity-50 cursor-not-allowed pointer-events-none" : "")}
+                                                            className={cn(
+                                                              "w-full font-medium hover:opacity-90", 
+                                                              (isEnded(bounty.end_date) || submissionLoading) 
+                                                                ? "opacity-50 cursor-not-allowed pointer-events-none bg-[var(--color-bg-tertiary)] text-[var(--color-text-muted)]" 
+                                                                : "bg-[var(--color-primary-brand)] text-black"
+                                                            )}
                                                             disabled={!twitterHandle || submissionLoading || isEnded(bounty.end_date)}
                                                         >
                                                             {submission?.id ? "Update Submission" : "Submit Entry"}
@@ -554,7 +574,7 @@ export default function BountyDetailPage() {
                                     <Card className="border-0 shadow-lg bg-zinc-800 backdrop-blur-sm py-8">
                                         <CardHeader>
                                             <div className="flex items-center space-x-2">
-                                                <Crown className="w-5 h-5 text-[#F2C700]" />
+                                                <Crown className={cn("w-5 h-5 text-[var(--color-primary-brand)]")} />
                                                 <CardTitle className="text-white">Select Winners</CardTitle>
                                             </div>
                                             <CardDescription className="text-zinc-400">Choose winners for this bounty and assign their positions</CardDescription>
@@ -566,7 +586,7 @@ export default function BountyDetailPage() {
                                                     {bounty.prizes.map((prize, index) => (
                                                         <div key={index} className="flex items-center justify-between p-2 bg-zinc-800 rounded border border-zinc-700">
                                                             <span className="font-medium text-white">{prize.place} Place</span>
-                                                            <span className="font-bold text-[#F2C700]">{Number.parseFloat(prize.prize.toString()).toLocaleString()} SSX</span>
+                                                            <span className={cn("font-bold text-[var(--color-primary-brand)]")}>{Number.parseFloat(prize.prize.toString()).toLocaleString()} SSX</span>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -589,7 +609,7 @@ export default function BountyDetailPage() {
                                                                                 </Link>
                                                                                 {selectedWinners[submission.id] && (
                                                                                     selectedWinners[submission.id] !== "No Prize" ? (
-                                                                                        <Badge className="bg-[#fdc700] text-black">
+                                                                                        <Badge className="bg-primary text-black">
 
                                                                                             {selectedWinners[submission.id]} Place
                                                                                         </Badge>
@@ -603,7 +623,7 @@ export default function BountyDetailPage() {
                                                                                         href={submission.tweet_link}
                                                                                         target="_blank"
                                                                                         rel="noopener noreferrer"
-                                                                                        className="underline text-[#fdc700]"
+                                                                                        className={cn("underline hover:opacity-80 text-[var(--color-primary-brand)]")}
                                                                                     >
                                                                                         Tweet link
                                                                                     </Link>
@@ -653,7 +673,7 @@ export default function BountyDetailPage() {
 
                                                 <Button
                                                     onClick={announceWinners}
-                                                    className="bg-[#F2C700] hover:bg-[#F2C700]/90 text-black"
+                                                    className={cn("hover:opacity-90 bg-[var(--color-primary-brand)] text-black")}
                                                     disabled={Object.keys(selectedWinners).length === 0 || isSelectingWinners || !isEnded(bounty.end_date)}
                                                 >
                                                     <Trophy className="w-4 h-4 mr-2" />

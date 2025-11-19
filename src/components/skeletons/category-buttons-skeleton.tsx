@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils'
+
 export function CategoryButtonsSkeleton({ count = 6 }: { count?: number }) {
   const widths = ["w-20", "w-24", "w-16", "w-28", "w-14", "w-24", "w-20", "w-32"]
   return (
@@ -9,7 +11,7 @@ export function CategoryButtonsSkeleton({ count = 6 }: { count?: number }) {
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
-          className={`h-8 rounded-full ${widths[i % widths.length]} bg-zinc-600`}
+          className={cn(`h-8 rounded-full bg-[var(--color-skeleton-light)] ${widths[i % widths.length]}`)}
         />
       ))}
     </div>

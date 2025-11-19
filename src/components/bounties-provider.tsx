@@ -1,4 +1,3 @@
-// providers/BountiesProvider.tsx
 "use client";
 
 import * as React from "react";

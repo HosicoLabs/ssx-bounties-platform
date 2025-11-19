@@ -7,6 +7,7 @@ import { BountyCard } from "@/components/bounty-card"
 import { CategoryButtonsSkeleton } from "@/components/skeletons/category-buttons-skeleton"
 import { useState } from "react"
 import { BountyCardsSkeletonGrid } from "@/components/skeletons/bounty-card-skeleton"
+import { cn } from "@/lib/utils"
 
 export default function BountiesPage() {
   const { activeBounties, inactiveBounties, categoryNames: categories, categoriesLoading, bountiesLoading } = useBounties()
@@ -26,18 +27,18 @@ export default function BountiesPage() {
     <div className="min-h-screen bg-black">
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="active" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 bg-zinc-800 backdrop-blur-sm">
-            <TabsTrigger value="active" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">
+          <TabsList className={cn("grid w-full grid-cols-2 backdrop-blur-sm bg-[var(--color-bg-secondary)]")}>
+            <TabsTrigger value="active" className="text-white hover:bg-[var(--color-primary-brand)] hover:text-black data-[state=active]:bg-[var(--color-primary-brand)] data-[state=active]:text-black data-[state=active]:opacity-100">
               Active Bounties ({activeBounties.length})
             </TabsTrigger>
-            <TabsTrigger value="finalized" className="data-[state=active]:bg-[#F2C700] data-[state=active]:text-black text-white">
+            <TabsTrigger value="finalized" className="text-white hover:bg-[var(--color-primary-brand)] hover:text-black data-[state=active]:bg-[var(--color-primary-brand)] data-[state=active]:text-black data-[state=active]:opacity-100">
               Finalized Bounties ({inactiveBounties.length})
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="active" className="space-y-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-[#fff]">Currently Active</h3>
+              <h3 className={cn("text-xl font-bold text-[var(--color-text-primary)]")}>Currently Active</h3>
               <div className="flex flex-wrap gap-2 justify-end">
                 {
                   categoriesLoading ? (
@@ -48,11 +49,12 @@ export default function BountiesPage() {
                       variant="outline"
                       size="sm"
                       onClick={() => setSelectedCategory(cat)}
-                      className={
-                        selectedCategory === cat
-                        ? "bg-[#fdc700] text-black border-[#fdc700] font-bold hover:bg-transparent hover:text-[#fdc700]"
-                        : "bg-transparent text-[#fdc700] border-[#fdc700] hover:bg-[#fdc700]"
-                      }
+                      className={cn(
+                        "font-bold hover:opacity-90 transition-all border-[var(--color-primary-brand)]",
+                        selectedCategory === cat 
+                          ? "bg-[var(--color-primary-brand)] text-black" 
+                          : "bg-transparent text-[var(--color-primary-brand)]"
+                      )}
                     >
                       {cat}
                     </Button>))
@@ -87,7 +89,7 @@ export default function BountiesPage() {
 
           <TabsContent value="finalized" className="space-y-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-[#fff]">Completed Bounties</h3>
+              <h3 className={cn("text-xl font-bold text-[var(--color-text-primary)]")}>Completed Bounties</h3>
               <div className="flex flex-wrap gap-2 justify-end">
                 {
                   categoriesLoading ? (
@@ -98,11 +100,12 @@ export default function BountiesPage() {
                       variant="outline"
                       size="sm"
                       onClick={() => setSelectedCategory(cat)}
-                      className={
-                        selectedCategory === cat
-                        ? "bg-[#fdc700] text-black border-[#fdc700] font-bold hover:bg-transparent hover:text-[#fdc700]"
-                        : "bg-transparent text-[#fdc700] border-[#fdc700] hover:bg-[#fdc700]"
-                      }
+                      className={cn(
+                        "font-bold hover:opacity-90 transition-all border-[var(--color-primary-brand)]",
+                        selectedCategory === cat 
+                          ? "bg-[var(--color-primary-brand)] text-black" 
+                          : "bg-transparent text-[var(--color-primary-brand)]"
+                      )}
                     >
                       {cat}
                     </Button>))
