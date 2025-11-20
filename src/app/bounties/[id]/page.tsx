@@ -205,7 +205,7 @@ export default function BountyDetailPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-black grid place-items-center">
+            <div className="bg-black grid place-items-center py-20">
                 <p className="text-sm text-zinc-400">Loading bounty…</p>
             </div>
         );
@@ -213,7 +213,7 @@ export default function BountyDetailPage() {
 
     if (err || !bounty) {
         return (
-            <div className="min-h-screen bg-black grid place-items-center">
+            <div className="bg-black grid place-items-center py-20">
                 <div className="text-center">
                     <p className="font-semibold text-red-500">Failed to load bounty</p>
                     <p className="text-sm text-zinc-400">{err ?? "Not found"}</p>
@@ -226,8 +226,8 @@ export default function BountyDetailPage() {
     }
 
     return (
-        <div className="min-h-screen bg-black">
-            <main className="container mx-auto px-4 py-8">
+        <div className="bg-black">
+            <div className="container mx-auto px-4 py-8">
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center space-x-4">
                         <Link href="/">
@@ -713,7 +713,7 @@ export default function BountyDetailPage() {
                         </Tabs>
                     </div>
                 </div>
-            </main>
+            </div>
         </div>
     )
 }

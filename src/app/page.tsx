@@ -22,19 +22,18 @@ export default function Home() {
       : activeBounties.filter((bounty) => bounty?.category?.name === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-black">
-      <main className="container mx-auto px-4 py-8">
+    <div className="bg-black">
+      <div className="container mx-auto px-4 py-8">
         <Card className={cn("mb-8 border-0 shadow-xl overflow-auto bg-black")}>
           <CardContent className="p-0 relative">
             <div 
-              className={cn("w-full h-64 bg-cover bg-center opacity-80")} 
-              style={{ backgroundImage: "url('/images/ssx-banner.jpg')" }}
+              className={cn("w-full h-64 bg-cover bg-center opacity-80 bg-[url('/images/ssx-banner.jpg')]")} 
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#000]/80 to-[#000]/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
             <div className="absolute inset-0 p-8 flex flex-col lg:flex-row items-center justify-between">
               <div className="lg:w-2/3 mb-6 lg:mb-0 z-10">
                 <h2 className="text-3xl font-bold mb-4 text-white">
-                  Earn <span className="text-[#fdc700]">$</span>SSX Tokens by Contributing to Our Community
+                  Earn <span className="text-[var(--color-primary-brand)]">$</span>SSX Tokens by Contributing to Our Community
                 </h2>
                 <p className="text-lg opacity-90 text-white">
                   Join bounty challenges, showcase your skills, and get rewarded with SSX tokens. From creative
@@ -58,11 +57,12 @@ export default function Home() {
                     variant="outline"
                     size="sm"
                     onClick={() => setSelectedCategory(cat)}
-                    className={
+                    className={cn(
+                      "border-[var(--color-primary-brand)] transition-colors",
                       selectedCategory === cat
-                        ? "bg-[#fdc700] text-black border-[#fdc700] font-bold hover:bg-transparent hover:text-[#fdc700]"
-                        : "bg-transparent text-[#fdc700] border-[#fdc700] hover:bg-[#fdc700]"
-                    }
+                        ? "bg-[var(--color-primary-brand)] text-black font-bold hover:bg-transparent hover:text-[var(--color-primary-brand)]"
+                        : "bg-transparent text-[var(--color-primary-brand)] hover:bg-[var(--color-primary-brand)] hover:text-black"
+                    )}
                   >
                     {cat}
                   </Button>))
@@ -89,7 +89,7 @@ export default function Home() {
             )
           }
         </div>
-      </main>
+      </div>
     </div>
   )
 }

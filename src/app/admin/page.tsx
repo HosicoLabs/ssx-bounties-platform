@@ -121,7 +121,7 @@ export default function AdminPanel() {
   // Show loading while admin status is being determined
   if (adminLoading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="bg-black flex items-center justify-center py-20">
         <div className="text-white">Loading...</div>
       </div>
     )
@@ -169,15 +169,15 @@ export default function AdminPanel() {
 
   if (!connected) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="bg-black flex items-center justify-center py-20">
         <div className="text-white">Please connect your wallet to access the admin panel...</div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-black">
-      <main className="container mx-auto px-4 py-8">
+    <div className="bg-black">
+      <div className="container mx-auto px-4 py-8">
         <Tabs defaultValue="bounties" className="space-y-6">
           <TabsList className={cn("grid w-full grid-cols-2 backdrop-blur-sm bg-[var(--color-bg-secondary)]")}>
             <TabsTrigger value="bounties" className="text-white hover:bg-[var(--color-primary-brand)] hover:text-black data-[state=active]:bg-[var(--color-primary-brand)] data-[state=active]:text-black">
@@ -386,7 +386,7 @@ export default function AdminPanel() {
             </Card>
           </TabsContent>
         </Tabs>
-      </main>
+      </div>
     </div>
   )
 }
